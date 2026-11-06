@@ -58,7 +58,7 @@ A phone camera pointed at the screen still sees it.
 
 ## Install
 
-Download `SneakPeek Setup x.y.z.exe` from [Releases](https://github.com/saijishnup/SneakPeek/releases) and run it. It installs per user, no admin needed.
+Download `SneakPeek.Setup.x.y.z.exe` from [Releases](https://github.com/saijishnup/SneakPeek/releases) and run it. It installs per user, no admin needed.
 
 ## Run from source
 

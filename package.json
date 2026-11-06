@@ -35,7 +35,8 @@
       "perMachine": false,
       "runAfterFinish": true,
       "createDesktopShortcut": true,
-      "shortcutName": "SneakPeek"
+      "shortcutName": "SneakPeek",
+      "artifactName": "${productName}.Setup.${version}.${ext}"
     }
   },
   "dependencies": {
