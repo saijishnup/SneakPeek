@@ -1,0 +1,322 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SneakPeek PRD</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f3f2ee; --ink:#1c1c1e; --muted:#6b6a66; --line:#dddbd4; --card:#fbfaf7;
+  --glass:rgba(246,245,241,.94); --glass-dark:rgba(24,24,26,.92);
+  --green:#2f9e5b; --red:#d64545;
+  --mono:"JetBrains Mono",ui-monospace,monospace;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.6 "Plus Jakarta Sans",system-ui,sans-serif}
+main{max-width:960px;margin:0 auto;padding:56px 20px 96px}
+h1{font-size:34px;line-height:1.15;margin:0 0 8px;letter-spacing:-.02em}
+h2{font-size:20px;margin:56px 0 14px;padding-top:20px;border-top:1px solid var(--line)}
+h3{font-size:15px;margin:28px 0 8px}
+p,li{max-width:70ch}
+.sub{color:var(--muted);margin:0}
+.meta{display:flex;gap:18px;flex-wrap:wrap;margin:18px 0 0;color:var(--muted);font-size:13px}
+.meta b{color:var(--ink);font-weight:600}
+code,pre{font-family:var(--mono);font-size:12.5px}
+code{background:#e9e7e0;padding:1px 5px;border-radius:4px}
+pre{background:#1c1c1e;color:#e8e6df;padding:16px 18px;border-radius:10px;overflow:auto;line-height:1.55}
+table{width:100%;border-collapse:collapse;font-size:14px;margin:8px 0}
+th,td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-weight:600;color:var(--muted);font-size:12.5px}
+td:first-child{white-space:nowrap}
+.cut{color:var(--muted);text-decoration:line-through}
+.note{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 16px;font-size:14px}
+kbd{font-family:var(--mono);font-size:11.5px;border:1px solid #c9c6bd;border-bottom-width:2px;border-radius:5px;padding:1px 6px;background:#fff}
+
+/* ---------- mockup stage ---------- */
+.stage{position:relative;border-radius:14px;padding:44px 24px;margin:14px 0 6px;
+  background:#0d0f14 radial-gradient(1200px 400px at 70% 120%,#1b2a4a 0%,transparent 60%);
+  display:flex;gap:28px;justify-content:center;align-items:flex-start;flex-wrap:wrap;overflow:hidden}
+.stage.dim{background:#2a2d33}
+.cap{font-size:12.5px;color:var(--muted);margin:0 0 18px}
+
+/* the notch window */
+.notch{--fs:16px;width:560px;max-width:100%;background:var(--glass);color:#26262a;border-radius:20px;
+  box-shadow:0 0 0 1px rgba(255,255,255,.6) inset,0 12px 40px rgba(0,0,0,.35);padding:10px 14px 14px;position:relative}
+.notch.dark{background:var(--glass-dark);color:#ecebe6;box-shadow:0 0 0 1px rgba(255,255,255,.08) inset,0 12px 40px rgba(0,0,0,.5)}
+.bar{display:flex;align-items:center;gap:8px;height:28px}
+.ib{width:26px;height:26px;display:grid;place-items:center;border-radius:7px;color:inherit;opacity:.75;cursor:default}
+.ib:hover{background:rgba(0,0,0,.06);opacity:1}
+.dark .ib:hover{background:rgba(255,255,255,.08)}
+.ib svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.chip{font-size:11px;padding:3px 9px;border-radius:99px;background:rgba(0,0,0,.06);color:#77756f;display:flex;align-items:center;gap:6px}
+.chip i{width:6px;height:6px;border-radius:50%;background:#b9b6ad}
+.chip.on{color:var(--green)} .chip.on i{background:var(--green)}
+.dark .chip{background:rgba(255,255,255,.08);color:#a3a19a}
+.sp{flex:1}
+.script{height:96px;overflow:hidden;margin-top:6px;font-size:var(--fs);line-height:1.55;font-weight:500;position:relative;
+  -webkit-mask-image:linear-gradient(#000 70%,transparent);mask-image:linear-gradient(#000 70%,transparent)}
+.script .inner{will-change:transform}
+.script .read{color:inherit}
+.script .unread{opacity:.38}
+.empty{height:96px;display:grid;place-items:center;font-size:18px;color:#a8a59d;font-weight:500}
+.hud{position:absolute;right:16px;bottom:10px;font:500 11px var(--mono);opacity:.55}
+
+/* edit mode */
+.notch.edit{width:860px}
+.edit textarea{width:100%;height:220px;margin-top:8px;border:1px solid rgba(0,0,0,.1);border-radius:12px;background:rgba(255,255,255,.7);
+  font:500 15px/1.55 "Plus Jakarta Sans",sans-serif;color:#26262a;padding:12px 14px;resize:none;outline:none}
+.btn{font:600 12px "Plus Jakarta Sans",sans-serif;border:0;border-radius:8px;padding:6px 12px;background:rgba(0,0,0,.07);color:#26262a;cursor:default}
+.btn.pri{background:#26262a;color:#fff}
+.label{font-size:12px;font-weight:600;color:#77756f}
+
+/* mini pill */
+.mini{background:var(--glass);border-radius:99px;padding:6px 8px 6px 14px;display:flex;align-items:center;gap:10px;font-size:12px;font-weight:600;color:#3a3a3e;
+  box-shadow:0 0 0 1px rgba(255,255,255,.6) inset,0 8px 24px rgba(0,0,0,.35)}
+.mini .dot{width:7px;height:7px;border-radius:50%;background:var(--green)}
+
+/* settings */
+.settings{width:300px;background:var(--glass);color:#2a2a2e;border-radius:16px;padding:14px 16px;font-size:13px;
+  box-shadow:0 0 0 1px rgba(255,255,255,.6) inset,0 12px 40px rgba(0,0,0,.35)}
+.row{display:flex;align-items:center;justify-content:space-between;min-height:36px}
+.row span:first-child{color:#55534e}
+.seg{display:flex;background:rgba(0,0,0,.06);border-radius:8px;padding:2px}
+.seg b{font-weight:600;padding:4px 10px;border-radius:6px;font-size:12px;color:#77756f}
+.seg b.on{background:#fff;color:#26262a;box-shadow:0 1px 2px rgba(0,0,0,.08)}
+input[type=range]{width:120px;accent-color:#26262a}
+.stepper{display:flex;align-items:center;gap:12px;font-weight:600}
+.stepper i{font-style:normal;width:22px;height:22px;display:grid;place-items:center;border-radius:6px;background:rgba(0,0,0,.06)}
+.val{font:500 11.5px var(--mono);color:#77756f;width:52px;text-align:right}
+.foot{display:flex;justify-content:space-between;margin-top:8px;padding-top:10px;border-top:1px solid rgba(0,0,0,.07)}
+.quit{color:var(--red);font-weight:600}
+
+@media (max-width:700px){.notch.edit{width:100%}}
+</style>
+</head>
+<body>
+<main>
+
+<div style="display:flex;align-items:center;gap:16px;margin-bottom:10px">
+<img src="../assets/brand/logo-mark.png" width="56" height="56" alt="SneakPeek logo">
+<div><h1 style="margin:0">SneakPeek v1</h1><p class="sub" style="font-size:17px"><i>Just Right There!</i></p></div>
+</div>
+<p class="sub">Personal teleprompter overlay for Windows. Always on top, hidden from screen share and screenshots, manual scroll. </p>
+<div class="meta"><span>Status: <b>Draft, awaiting approval</b></span><span>Date: <b>2026-11-07</b></span><span>Platform: <b>Windows 10 2004+ / 11</b></span></div>
+
+<div style="display:flex;gap:20px;align-items:center;margin:24px 0 0"><div style="width:120px;height:120px;background:#fbfaf7;border:1px solid var(--line);border-radius:24px;display:grid;place-items:center"><img src="../assets/brand/logo-mark.png" width="96" height="96" alt="SneakPeek logo"></div><div style="width:120px;height:120px;background:#fbfaf7;border:1px solid var(--line);border-radius:24px;display:grid;place-items:center"><img src="../assets/brand/logo-wordmark.png" width="96" height="96" alt="SneakPeek logo"></div><p class="cap" style="margin:0">Logo mark (app icon, tray, mini pill, help) and wordmark. Source: assets/brand/ (PNG from upscaled art in assets/brand/source/).</p></div>
+
+<h2>1. Scope</h2>
+<table>
+<tr><th>In v1</th><th>Out of v1</th></tr>
+<tr><td style="white-space:normal">
+Floating pill window, always on top<br>
+Hidden from capture (Meet, screenshots, OBS)<br>
+Script edit + import TXT / PDF / DOCX<br>
+Manual mode: auto-scroll, speed, restart<br>
+Settings: speed, font size, font, theme, opacity<br>
+Shortcuts, mini pill, resize, persistence<br>
+Help / Get Started window (Help · Features · Shortcuts), opens only from the Help button<br>Size slider (60–140%) in settings<br>
+One-click installer (fast launches; portable exe was slow because it unpacks on every start)
+</td><td style="white-space:normal">
+<span class="cut">Voice mode</span> (dropped per your call, add later)<br>
+<span class="cut">Sticky notes (Ctrl+N)</span><br>
+<span class="cut">Language picker</span><br>
+<span class="cut">License, trial, auto-update</span><br>
+<span class="cut">macOS build</span>
+</td></tr>
+</table>
+<p class="note">Voice can return later as one module (offline Vosk + matcher). The window shell is unaffected, so nothing gets thrown away.</p>
+
+<h2>2. Stack</h2>
+<table>
+<tr><th>Layer</th><th>Pick</th><th>Why</th></tr>
+<tr><td>Shell</td><td>Electron (latest stable)</td><td><code>setContentProtection(true)</code> maps to WDA_EXCLUDEFROMCAPTURE. Node 24 is already installed, Rust is not. The real Notch uses Electron too.</td></tr>
+<tr><td>UI</td><td>Plain HTML, CSS, vanilla JS</td><td>Two views and one panel. A framework would be overhead.</td></tr>
+<tr><td>Import</td><td><code>pdfjs-dist</code>, <code>mammoth</code></td><td>Smallest reliable PDF and DOCX text extractors. TXT is native.</td></tr>
+<tr><td>Storage</td><td><code>localStorage</code> + <code>userData/bounds.json</code></td><td>Script and settings in the renderer, window bounds in main. No DB.</td></tr>
+<tr><td>Package</td><td><code>electron-builder</code> NSIS one-click</td><td>Installs once, so it launches fast. The portable build unpacked about 125 MB on every start.</td></tr>
+<tr><td>Tests</td><td><code>node:test</code> + Playwright for Electron</td><td>Unit tests for the importer. A smoke test asserts the window flags.</td></tr>
+</table>
+<p>Rejected: <b>Tauri</b>. It gives a smaller binary but needs a Rust toolchain, and a personal tool gains nothing from that.</p>
+
+<h2>3. Architecture</h2>
+<pre>main.js            Electron main
+ ├ BrowserWindow    frameless · transparent · alwaysOnTop('screen-saver')
+ │                  skipTaskbar · setContentProtection(true), re-applied after show()
+ ├ settings window  child window, same flags
+ ├ tray             show / hide / quit
+ ├ bounds.json      save / restore position + size
+ └ IPC              resize(pill|edit|mini) · opacity · open-file · quit
+preload.js         contextBridge → window.notch (fixed channel list)
+renderer/
+ ├ index.html, style.css
+ ├ app.js           state, read/edit modes, scroll loop, keys
+ ├ importer.js      txt/pdf/docx → plain text (unit tested)
+ └ settings.html</pre>
+
+<h2>4. Mockups</h2>
+<p class="cap">Built in real HTML/CSS with the planned tokens. Mockup A scrolls: click it, then press <kbd>Space</kbd> to start or stop, <kbd>+</kbd>/<kbd>-</kbd> for speed, <kbd>T</kbd> for theme.</p>
+
+<h3>A. Read mode (pill)</h3>
+<div class="stage">
+  <div class="notch" id="demo" tabindex="0">
+    <div class="bar">
+      <span class="ib" title="Hide"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></span>
+      <span class="chip" id="chip"><i></i><span id="chipText">Click to Activate</span></span>
+      <span class="sp"></span>
+      <span class="ib" title="Play (Space)"><svg viewBox="0 0 24 24"><path d="M7 5l12 7-12 7z"/></svg></span>
+      <span class="ib" title="Restart"><svg viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg></span>
+      <span class="ib" title="Settings"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg></span>
+    </div>
+    <div class="script"><div class="inner" id="inner">
+      Good morning everyone. Today I want to walk you through the quarterly numbers and what they mean for our roadmap next year.
+      First, revenue grew eighteen percent, mostly from the new enterprise tier. Second, churn dropped below three percent for the first time.
+      Third, and this is the part I care about most, support tickets per customer fell by a third after the onboarding rewrite.
+      So where does that leave us? We double down on enterprise, we keep onboarding lean, and we stop building features nobody asked for.
+      Questions at the end, and yes, there will be snacks.
+    </div></div>
+    <div class="hud" id="hud">140 wpm · paused</div>
+  </div>
+</div>
+<p class="cap">Top bar: hide, focus chip (keys only work when the pill has focus, so the chip shows it), restart, settings. The text fades out at the bottom edge. Drag the bar to move, drag a corner to resize.</p>
+
+<h3>B. Empty state</h3>
+<div class="stage dim">
+  <div class="notch">
+    <div class="bar">
+      <span class="ib"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></span>
+      <span class="chip"><i></i>Click to Activate</span><span class="sp"></span>
+      <span class="ib"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/></svg></span>
+    </div>
+    <div class="empty">Double click to add script</div>
+  </div>
+</div>
+
+<h3>C. Edit mode (double-click, window grows to about 860×320)</h3>
+<div class="stage dim">
+  <div class="notch edit">
+    <div class="bar">
+      <span class="label">Editing script</span><span class="sp"></span>
+      <button class="btn">Import TXT / PDF / DOCX</button>
+      <button class="btn pri">Done <span style="opacity:.6">Esc</span></button>
+    </div>
+    <textarea spellcheck="false">Good morning everyone. Today I want to walk you through the quarterly numbers and what they mean for our roadmap next year.
+
+First, revenue grew eighteen percent, mostly from the new enterprise tier.</textarea>
+  </div>
+</div>
+
+<h3>D. Settings panel and mini pill</h3>
+<div class="stage dim">
+  <div class="settings">
+    <div class="row"><span>Speed</span><span style="display:flex;align-items:center;gap:8px"><input type="range" min="30" max="300" value="140"><span class="val">140 wpm</span></span></div>
+    <div class="row"><span>Font size</span><span class="stepper"><i>−</i>16<i>+</i></span></div>
+    <div class="row"><span>Font</span><span>Plus Jakarta Sans</span></div>
+    <div class="row"><span>Theme</span><span class="seg"><b class="on">Light</b><b>Dark</b></span></div>
+    <div class="row"><span>Size</span><span style="display:flex;align-items:center;gap:8px"><input type="range" min="60" max="140" value="100"><span class="val">100%</span></span></div>
+    <div class="row"><span>Opacity</span><span style="display:flex;align-items:center;gap:8px"><input type="range" min="30" max="100" value="100"><span class="val">100%</span></span></div>
+    <div class="row"><span>Text width</span><span class="seg"><b>Narrow</b><b class="on">Full</b></span></div>
+    <div class="foot"><span>Shortcuts</span><span class="quit">Quit</span></div>
+  </div>
+  <div style="display:flex;flex-direction:column;gap:12px;align-items:center;padding-top:10px">
+    <div class="mini"><span class="dot"></span>Notch · 140 wpm<span class="ib"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></span></div>
+    <span style="color:#9aa0aa;font-size:12px">Mini pill (Esc in read mode)</span>
+  </div>
+</div>
+<p class="cap">The Mode and Language rows are gone because voice is out. "Text width" is the one new row: it keeps lines near the camera. Cut it if you don't want it.</p>
+
+<h3>E. Help / Get Started window (opens from Help in settings or tray)</h3>
+<div class="stage dim">
+  <div class="settings" style="width:640px;max-width:100%;padding:18px 20px">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px">
+      <img src="../assets/brand/logo-mark.png" width="26" height="26" alt="SneakPeek logo">
+      <b style="font-size:16px">Get started with SneakPeek</b><span class="sp"></span><span style="color:#77756f;font-size:12px"><i>Just Right There!</i></span>
+    </div>
+    <div style="display:flex;gap:16px">
+      <div style="width:130px;display:flex;flex-direction:column;gap:4px;font-size:12.5px">
+        <span style="padding:6px 10px;border-radius:8px;color:#77756f">Help</span>
+        <span style="padding:6px 10px;border-radius:8px;background:#fff;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,.08)">Features</span>
+        <span style="padding:6px 10px;border-radius:8px;color:#77756f">Shortcuts</span>
+      </div>
+      <div style="flex:1;display:flex;flex-direction:column;gap:8px">
+        <div style="background:rgba(255,255,255,.7);border-radius:10px;padding:10px 12px"><b style="font-size:13px">Invisible to screen share</b><div style="color:#77756f;font-size:12px">Hidden from Meet, Zoom, screenshots and recordings.</div></div>
+        <div style="background:rgba(255,255,255,.7);border-radius:10px;padding:10px 12px"><b style="font-size:13px">Stays on top</b><div style="color:#77756f;font-size:12px">Above every window, including full-screen apps.</div></div>
+        <div style="background:rgba(255,255,255,.7);border-radius:10px;padding:10px 12px"><b style="font-size:13px">Import TXT, PDF or DOCX</b><div style="color:#77756f;font-size:12px">Text-based files only. Scanned PDFs are not supported.</div></div>
+      </div>
+    </div>
+    <div class="foot" style="justify-content:space-between;align-items:center"><a href="https://github.com/saijishnup/SneakPeek" style="font-size:13px;color:#77756f">View SneakPeek on GitHub</a><button class="btn pri">Got it</button></div>
+  </div>
+</div>
+
+<h2>5. Behavior</h2>
+<table>
+<tr><th>Thing</th><th>Spec</th></tr>
+<tr><td>Window</td><td>Default 440×112, scaled 60–140% by the Size setting, top center of the primary display. Always on top at <code>screen-saver</code> level, so it sits above full-screen Meet. No taskbar icon, tray icon only. Position persists. It re-pins itself on top on blur and every 2 s, in case another topmost app steals the spot.</td></tr>
+<tr><td>Capture</td><td>Content protection is on at all times and re-applied after every show, to dodge the Electron hide/show bug.</td></tr>
+<tr><td>Read mode</td><td>Text scrolls up at the chosen speed. Mouse wheel nudges the position. Lines above the reading line stay bright and lines below are dimmed slightly.</td></tr>
+<tr><td>Edit mode</td><td>Double-click opens it. The window grows and scrolling pauses. Esc or Done saves and shrinks the window back.</td></tr>
+<tr><td>Speed</td><td>Measured in wpm, from 30 to 300 in steps of 10. px/s = wpm ÷ 60 × 12 × (font size ÷ 16).</td></tr>
+<tr><td>Import</td><td>TXT is read as-is. PDF text comes from pdf.js, with paragraphs joined. DOCX goes through mammoth's raw text. Scanned PDFs are unsupported and show a message.</td></tr>
+</table>
+
+<h3>Shortcuts (when the pill has focus)</h3>
+<table>
+<tr><th>Key</th><th>Action</th></tr>
+<tr><td><kbd>Space</kbd></td><td>Start or stop scrolling</td></tr>
+<tr><td><kbd>+</kbd> <kbd>-</kbd></td><td>Speed ±10 wpm</td></tr>
+<tr><td><kbd>Ctrl</kbd>+<kbd>R</kbd></td><td>Restart from the top</td></tr>
+<tr><td><kbd>Esc</kbd></td><td>Leave edit mode, or collapse to the mini pill</td></tr>
+<tr><td><kbd>Ctrl</kbd>+<kbd>F</kbd></td><td>Find (edit mode)</td></tr>
+<tr><td><kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>Space</kbd></td><td><b>Global</b> start/stop scroll that works while Meet has focus. It replaces the old global mic shortcut. Remove it if you don't want it.</td></tr>
+</table>
+
+<h2>6. Build plan</h2>
+<table>
+<tr><th>#</th><th>Piece</th><th>Done when</th></tr>
+<tr><td>1</td><td>Shell: main, preload, tray, bounds, global key</td><td>Smoke test asserts <code>isAlwaysOnTop</code>, <code>isContentProtected</code> and skipTaskbar.</td></tr>
+<tr><td>2</td><td>Importer (runs in parallel with 1)</td><td><code>node:test</code> passes on sample TXT, PDF and DOCX files.</td></tr>
+<tr><td>3</td><td>Overlay UI: read/edit, scroll loop, settings, shortcuts</td><td>Manual run plus an unslop pass.</td></tr>
+<tr><td>4</td><td>Package as a portable exe</td><td>The exe launches cleanly on a fresh run.</td></tr>
+</table>
+<p>Each piece goes to a subagent and is tested before the next one starts.</p>
+
+<h2>7. Acceptance tests (you run these)</h2>
+<table>
+<tr><th>#</th><th>Test</th><th>Pass when</th></tr>
+<tr><td>T1</td><td>Google Meet, share <b>entire screen</b></td><td>The pill does not appear on a second device that joins the call.</td></tr>
+<tr><td>T2</td><td>Meet, share <b>a window</b> sitting behind the pill</td><td>No pill and no black box in the share.</td></tr>
+<tr><td>T3</td><td>Meet, share <b>a Chrome tab</b></td><td>No pill (sanity check).</td></tr>
+<tr><td>T4</td><td><kbd>PrtSc</kbd>, <kbd>Win</kbd>+<kbd>PrtSc</kbd>, <kbd>Win</kbd>+<kbd>Shift</kbd>+<kbd>S</kbd>, Snipping Tool</td><td>The pill is missing from every image.</td></tr>
+<tr><td>T5</td><td>OBS display capture and window capture</td><td>The pill is missing.</td></tr>
+<tr><td>T6</td><td>Zoom / Teams share (optional)</td><td>The pill is missing.</td></tr>
+<tr><td>T7</td><td>Full-screen Meet, F11 Chrome, PowerPoint slideshow</td><td>The pill stays on top.</td></tr>
+<tr><td>T8</td><td><kbd>Alt</kbd>+<kbd>Tab</kbd>, <kbd>Win</kbd>+<kbd>D</kbd>, clicking other apps</td><td>The pill stays visible, with no taskbar icon.</td></tr>
+<tr><td>T9</td><td><kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>Space</kbd> while Meet has focus</td><td>Scrolling toggles.</td></tr>
+<tr><td>T10</td><td><kbd>Space</kbd>, <kbd>+</kbd>/<kbd>-</kbd>, <kbd>Ctrl</kbd>+<kbd>R</kbd>, <kbd>Esc</kbd></td><td>Each one behaves as specified.</td></tr>
+<tr><td>T11</td><td>Import .txt, .pdf, .docx</td><td>The text appears with clean paragraphs.</td></tr>
+<tr><td>T12</td><td>Quit and relaunch</td><td>Script, settings, position and size are restored.</td></tr>
+<tr><td>T13</td><td>Two monitors: move the pill to monitor 2, share monitor 2</td><td>Hidden from the share and still on top.</td></tr>
+<tr><td>T14</td><td>Opacity at 40%, dark theme</td><td>Readable, with no flicker or black box.</td></tr>
+</table>
+<p class="note">Known limits: a phone camera pointed at the screen still sees the pill. Hiding requires Windows 10 2004 or later.</p>
+
+</main>
+<script>
+const demo=document.getElementById('demo'),inner=document.getElementById('inner'),hud=document.getElementById('hud'),chip=document.getElementById('chip'),chipText=document.getElementById('chipText');
+let wpm=140,run=false,y=0,last=0;
+const draw=()=>{hud.textContent=wpm+' wpm · '+(run?'scrolling':'paused')};
+function tick(t){if(run){y+=(t-last)/1000*wpm/60*12;if(y>inner.scrollHeight-40)y=0;inner.style.transform=`translateY(${-y}px)`}last=t;requestAnimationFrame(tick)}
+requestAnimationFrame(tick);
+demo.addEventListener('focus',()=>{chip.classList.add('on');chipText.textContent='Active'});
+demo.addEventListener('blur',()=>{chip.classList.remove('on');chipText.textContent='Click to Activate';run=false;draw()});
+demo.addEventListener('keydown',e=>{
+  if(e.code==='Space'){run=!run;e.preventDefault()}
+  else if(e.key==='+'||e.key==='=')wpm=Math.min(300,wpm+10);
+  else if(e.key==='-')wpm=Math.max(30,wpm-10);
+  else if(e.key==='t'||e.key==='T')demo.classList.toggle('dark');
+  draw();
+});
+</script>
+</body>
+</html>

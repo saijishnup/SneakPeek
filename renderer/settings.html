@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'">
+<title>SneakPeek settings</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="panel">
+  <div class="row"><label for="scale">Size</label><span class="ctl"><input type="range" id="scale" min="60" max="140" step="5"><span class="val" id="scVal"></span></span></div>
+  <div class="row"><label for="wpm">Speed</label><span class="ctl"><input type="range" id="wpm" min="30" max="300" step="10"><span class="val" id="wpmVal"></span></span></div>
+  <div class="row"><span>Font size</span><span class="stepper">
+    <button class="ib" id="fsDown" aria-label="Smaller"><svg viewBox="0 0 24 24"><path d="M6 12h12"/></svg></button>
+    <output id="fs"></output>
+    <button class="ib" id="fsUp" aria-label="Larger"><svg viewBox="0 0 24 24"><path d="M6 12h12M12 6v12"/></svg></button>
+  </span></div>
+  <div class="row"><label for="font">Font</label><select id="font"><option>Plus Jakarta Sans</option><option>Inter</option><option>System</option></select></div>
+  <div class="row"><span>Theme</span><span class="seg" data-key="theme"><button value="light">Light</button><button value="dark">Dark</button></span></div>
+  <div class="row"><label for="opacity">Opacity</label><span class="ctl"><input type="range" id="opacity" min="30" max="100" step="5"><span class="val" id="opVal"></span></span></div>
+  <div class="row"><span>Text width</span><span class="seg" data-key="width"><button value="narrow">Narrow</button><button value="full">Full</button></span></div>
+  <div class="foot"><button class="link" id="help">Help and shortcuts</button><button class="link quit" id="quit">Quit</button></div>
+</div>
+<script src="settings.js"></script>
+</body>
+</html>

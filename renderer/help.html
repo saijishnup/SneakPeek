@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'">
+<title>Get started with SneakPeek</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="help">
+  <header class="drag">
+    <img class="mark" src="../assets/brand/logo-mark.png" alt="">
+    <div><h1>Get started with SneakPeek</h1><p>Just Right There!</p></div>
+  </header>
+
+  <div class="body">
+    <nav role="tablist">
+      <button role="tab" aria-selected="true" data-tab="t-help">Help</button>
+      <button role="tab" aria-selected="false" data-tab="t-features">Features</button>
+      <button role="tab" aria-selected="false" data-tab="t-keys">Shortcuts</button>
+      <img class="word" src="../assets/brand/logo-wordmark.png" alt="SneakPeek">
+    </nav>
+
+    <section id="t-help" role="tabpanel">
+      <div class="card"><b>Add your script</b><p>Double-click the pill to open the editor. Paste text, or use Import for a TXT, PDF or DOCX file. Press <kbd>Esc</kbd> or Done to save.</p></div>
+      <div class="card"><b>Start scrolling</b><p>Press the play button in the pill, or click the pill and press <kbd>Space</kbd>. While another app has focus, <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>Space</kbd> does the same.</p></div>
+      <div class="card"><b>Test it on a screen share</b><p>Start a Meet or Zoom call, share your whole screen and check the preview. The pill should not show up. Do this once before a real call.</p></div>
+    </section>
+
+    <section id="t-features" role="tabpanel" hidden>
+      <div class="card"><b>Invisible to screen share</b><p>Hidden from Meet, Zoom, Teams, screenshots and recordings.</p></div>
+      <div class="card"><b>Stays on top</b><p>Sits above every window, full-screen apps included.</p></div>
+      <div class="card"><b>Manual scroll speed</b><p>30 to 300 words per minute. Nudge the position with the mouse wheel.</p></div>
+      <div class="card"><b>Import TXT, PDF or DOCX</b><p>Text-based files only. Scanned PDFs have no text to read.</p></div>
+      <div class="card"><b>Size, opacity and theme</b><p>Pill size, font, opacity, light or dark live in Settings.</p></div>
+    </section>
+
+    <section id="t-keys" role="tabpanel" hidden>
+      <div class="card"><table>
+        <tr><td><kbd>Space</kbd></td><td>Start or stop scrolling</td></tr>
+        <tr><td><kbd>+</kbd> <kbd>-</kbd></td><td>Speed up or down by 10 wpm</td></tr>
+        <tr><td><kbd>Ctrl</kbd>+<kbd>R</kbd></td><td>Restart from the top</td></tr>
+        <tr><td><kbd>Esc</kbd></td><td>Leave the editor, or fold into the mini pill</td></tr>
+        <tr><td><kbd>Ctrl</kbd>+<kbd>F</kbd></td><td>Find in the editor</td></tr>
+        <tr><td>Double-click</td><td>Edit the script</td></tr>
+        <tr><td><kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>Space</kbd></td><td>Start or stop from anywhere <small>(global)</small></td></tr>
+      </table></div>
+    </section>
+  </div>
+
+  <footer><a class="gh" href="https://github.com/saijishnup/SneakPeek" target="_blank" rel="noopener">View SneakPeek on GitHub</a><button class="btn pri" id="go">Got it</button></footer>
+</div>
+<script src="help.js"></script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+{
+  "name": "sneakpeek",
+  "productName": "SneakPeek",
+  "version": "1.0.0",
+  "description": "SneakPeek - Just Right There! Teleprompter overlay hidden from screen share.",
+  "main": "main.js",
+  "private": true,
+  "scripts": {
+    "start": "electron .",
+    "test": "node --test \"test/**/*.test.*\"",
+    "smoke": "node test/smoke.mjs",
+    "e2e": "node test/integration.mjs",
+    "dist": "electron-builder --win nsis"
+  },
+  "build": {
+    "appId": "local.sneakpeek",
+    "productName": "SneakPeek",
+    "files": [
+      "main.js",
+      "preload.js",
+      "src/**",
+      "renderer/**",
+      "assets/**",
+      "node_modules/**",
+      "!test/**",
+      "!docs/**",
+      "!memory/**"
+    ],
+    "win": {
+      "target": "nsis",
+      "icon": "assets/icon.png"
+    },
+    "nsis": {
+      "oneClick": true,
+      "perMachine": false,
+      "runAfterFinish": true,
+      "createDesktopShortcut": true,
+      "shortcutName": "SneakPeek"
+    }
+  },
+  "dependencies": {
+    "@fontsource-variable/inter": "^5.3.0",
+    "@fontsource-variable/plus-jakarta-sans": "^5.3.0",
+    "mammoth": "^1.13.0",
+    "pdfjs-dist": "^6.5.438"
+  },
+  "devDependencies": {
+    "electron": "^45.2.3",
+    "electron-builder": "^26.18.0",
+    "playwright-core": "^1.65.0"
+  }
+}

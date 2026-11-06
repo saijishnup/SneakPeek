@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'">
+<title>SneakPeek</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="view" id="read">
+  <header class="bar drag">
+    <button class="ib" id="hide" title="Hide" aria-label="Hide"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    <span class="chip" id="chip"><i></i><span id="chipText">Click to Activate</span></span>
+    <span class="sp"></span>
+    <button class="hud" id="hud" title="Play or pause (Space)"></button>
+    <button class="ib play" id="play" title="Play (Space)" aria-label="Play (Space)"><svg viewBox="0 0 24 24"><path class="i-play" d="M8 5.5v13l10.5-6.5z"/><path class="i-pause" d="M9 5v14M15 5v14"/></svg></button>
+    <button class="ib" id="restart" title="Restart (Ctrl+R)" aria-label="Restart"><svg viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg></button>
+    <button class="ib" id="gear" title="Settings" aria-label="Settings"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg></button>
+  </header>
+  <div class="stage" id="stage">
+    <div class="script" id="script"><div class="inner" id="inner"></div></div>
+    <div class="empty" id="empty" hidden>Double click to add script</div>
+  </div>
+</div>
+
+<div class="view" id="edit" hidden>
+  <header class="bar drag">
+    <span class="label">Editing script</span>
+    <span class="note" id="note" role="status"></span>
+    <span class="sp"></span>
+    <button class="btn" id="import">Import TXT / PDF / DOCX</button>
+    <button class="btn pri" id="done">Done<kbd>Esc</kbd></button>
+  </header>
+  <div class="find" id="find" hidden>
+    <input id="q" placeholder="Find in script" spellcheck="false" aria-label="Find">
+    <span id="qInfo">Enter to jump, F3 for next</span>
+  </div>
+  <textarea id="ta" spellcheck="false" placeholder="Paste or type your script. Blank lines split paragraphs."></textarea>
+</div>
+
+<div class="view mini drag" id="mini" hidden>
+  <img class="logo" src="../assets/brand/logo-mark.png" alt="">
+  <span class="txt no-drag" id="miniTxt">SneakPeek <span>· 140 wpm</span></span>
+  <button class="ib" id="expand" title="Expand (Esc)" aria-label="Expand"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></button>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
