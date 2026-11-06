@@ -49,5 +49,19 @@
     "electron": "^45.2.3",
     "electron-builder": "^26.18.0",
     "playwright-core": "^1.65.0"
-  }
+  },
+  "keywords": [
+    "teleprompter",
+    "screen-share",
+    "invisible",
+    "overlay",
+    "always-on-top",
+    "electron",
+    "windows",
+    "google-meet",
+    "zoom",
+    "presentation",
+    "notch",
+    "content-protection"
+  ]
 }
