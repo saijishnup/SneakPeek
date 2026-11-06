@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/brand/logo-mark.png" alt="SneakPeek" width="220" />
+  <img src="assets/icon-256.png" alt="SneakPeek" width="220" />
 </p>
 
 # SneakPeek
