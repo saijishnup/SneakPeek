@@ -6,11 +6,13 @@
 
 *Just Right There!*
 
-[![Windows 10 2004+](https://img.shields.io/badge/windows-10%202004%2B%20%7C%2011-f6f5f3?style=flat-square&labelColor=1c1b19)](#install)
-[![Electron 45](https://img.shields.io/badge/electron-45-e7e5e1?style=flat-square&labelColor=1c1b19)](https://www.electronjs.org/)
-[![Hidden from screen share](https://img.shields.io/badge/screen%20share-hidden-2f9e5b?style=flat-square&labelColor=1c1b19)](#how-it-hides)
-[![Runs offline](https://img.shields.io/badge/runs-100%25%20offline-d9d6d0?style=flat-square&labelColor=1c1b19)](#features)
-[![Release](https://img.shields.io/github/v/release/saijishnup/SneakPeek?style=flat-square&labelColor=1c1b19&color=f6f5f3)](https://github.com/saijishnup/SneakPeek/releases)
+<p align="center">
+  <a href="#install"><img src="https://img.shields.io/badge/windows-10%202004%2B%20%7C%2011-f6f5f3?style=flat-square&labelColor=1c1b19" alt="Windows 10 2004+" /></a>
+  <a href="https://www.electronjs.org/"><img src="https://img.shields.io/badge/electron-45-e7e5e1?style=flat-square&labelColor=1c1b19" alt="Electron 45" /></a>
+  <a href="#how-it-hides"><img src="https://img.shields.io/badge/screen%20share-hidden-2f9e5b?style=flat-square&labelColor=1c1b19" alt="Hidden from screen share" /></a>
+  <a href="#features"><img src="https://img.shields.io/badge/runs-100%25%20offline-d9d6d0?style=flat-square&labelColor=1c1b19" alt="Runs offline" /></a>
+  <a href="https://github.com/saijishnup/SneakPeek/releases"><img src="https://img.shields.io/github/v/release/saijishnup/SneakPeek?style=flat-square&labelColor=1c1b19&color=f6f5f3" alt="Release" /></a>
+</p>
 
 ---
 
