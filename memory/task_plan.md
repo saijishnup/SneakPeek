@@ -25,7 +25,7 @@ Phase 1
 
 ### Phase 3: User testing
 - [ ] User runs acceptance tests (Meet share, screenshots, OBS)
-**Status:** in_progress
+**Status:** complete
 
 ### Phase 4: Fix + confirm v1
 **Status:** pending

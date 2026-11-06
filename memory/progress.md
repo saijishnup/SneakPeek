@@ -17,3 +17,11 @@
 - Diagnosis: capture hiding verified live (GetWindowDisplayAffinity=0x11, absent from GDI capture). Topmost flag set but can be bumped. Slow start = portable exe unpacking 125MB each launch. Settings blank = window shown before page loaded. Autoscroll = Space needs focus, no visible button.
 - Fixes: pill 440x112 + Size slider (setScale IPC), re-pin on blur + 2s loop, settings pre-created hidden, help on demand + ready-to-show, play button, animations, new logo-mark/wordmark SVGs + icon.png, NSIS one-click installer.
 - Tests: e2e 11/11, unit 6/6, smoke 5/5. Installer: dist/SneakPeek Setup 1.0.0.exe.
+
+## 2026-11-07 round 3
+- User tests: Meet share +ve, screenshot +ve, Win+Alt+R +ve. Win+Shift+S opened Voice Access on their setup (not a real test).
+- Upscaled logos -> assets/brand/ (transparent cropped PNG), sources in assets/brand/source/. icon.png 1024, icon-256, tray.png/@2x/@3x.
+- Min speed 30 wpm, min font size 6. GitHub link in help footer (opens externally via shell.openExternal).
+- Tests now use SNEAKPEEK_PROFILE temp userData (earlier e2e runs shared + wiped the installed app's localStorage, and the single-instance lock blocked tests while the user's copy ran).
+- Repo: https://github.com/saijishnup/SneakPeek (public), main + tag v1.0.0 pushed. README with screenshots. Release v1.0.0 drafted in browser; installer upload needs the user (no gh CLI, no winget, pane cannot upload files).
+- Next: user retests installed build; then break.
